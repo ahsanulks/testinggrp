@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/ahsanulks/testingrpc/proto"
+	"github.com/ahsanulks/testingrpc/server/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -28,9 +28,11 @@ func main() {
 }
 
 func (s *server) Add(context context.Context, request *proto.Request) (*proto.Response, error) {
-	return &proto.Response{Result: request.X + request.Y}
+	log.Println("have a request with params", request.X, request.Y)
+	return &proto.Response{Result: request.X + request.Y}, nil
 }
 
 func (s *server) Multiply(context context.Context, request *proto.Request) (*proto.Response, error) {
-	return &proto.Response{Result: request.X * request.Y}
+	log.Println("have a request with params", request.X, request.Y)
+	return &proto.Response{Result: request.X * request.Y}, nil
 }
